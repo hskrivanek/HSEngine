@@ -39,10 +39,6 @@ namespace HSEngine.Rendering
 
         public TexturedMesh CreateMesh(RawModel model, ImageSharpTexture textureData, ShaderSet shaderSet)
         {
-            if (gd == null)
-            {
-                throw new InvalidOperationException("Graphics devices are not initialized");
-            }
             (Shader vShader, Shader fShader) = shaderSet.CreateShaders(gd.ResourceFactory);
             return new TexturedMesh(model, textureData, vShader, fShader);
         }

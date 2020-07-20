@@ -30,18 +30,6 @@ namespace HSEngine.Rendering
             indexes = modelData.Indexes;
         }
 
-        public RawModel(ObjFile objFile)
-        {
-            int verticesCount = objFile.Positions.Length;
-            vertices = new VertexData[verticesCount];
-            for (int i = 0; i < verticesCount; i++)
-            {
-                var textureCoords = objFile.TexCoords[i];
-                textureCoords = new Vector2(textureCoords.X, 1 - textureCoords.Y);
-                vertices[i] = new VertexData(objFile.Positions[i], textureCoords, objFile.Normals[i]);
-            }
-        }
-
         public DeviceBuffer CreateVertexBuffer(GraphicsDevice gd)
         {
             var factory = gd.ResourceFactory;
