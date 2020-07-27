@@ -33,11 +33,16 @@ namespace HSEngine.Core.Scenes
 
         public void Update()
         {
+            var context = new SceneContext
+            {
+                MainCamera = mainCamera
+            };
+
             foreach (var entity in this.entities)
             {
-                entity.Update();
+                entity.Update(context);
             }
-            this.mainCamera.Update();
+            this.mainCamera.Update(context);
         }
 
         public void Draw(Renderer renderer)

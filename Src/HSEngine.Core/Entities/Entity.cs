@@ -1,4 +1,5 @@
 ﻿using HSEngine.Core.Components;
+using HSEngine.Core.Scenes;
 
 namespace HSEngine.Core.Entities
 {
@@ -12,6 +13,6 @@ namespace HSEngine.Core.Entities
         public Transform Transform { get; set; }
 
         public virtual void Initialize() { }
-        public virtual void Update() { }
+        public virtual void Update(SceneContext sceneContext) { }
     }
 }

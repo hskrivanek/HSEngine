@@ -3,6 +3,7 @@ using HSEngine.Core.Components;
 using HSEngine.Core.Entities;
 using HSEngine.Rendering;
 using HSEngine.Utility;
+using HSEngineTest.Entities;
 using System.IO;
 using System.Numerics;
 using Veldrid.ImageSharp;
@@ -35,6 +36,7 @@ namespace HSEngineTest
             entity.InitializeMesh(renderer);
 
             game.AddEntity(entity);
+            game.AddEntity(new CameraController());
 
             game.RunMainLoop();
             renderer.DisposeGraphicsDevices();

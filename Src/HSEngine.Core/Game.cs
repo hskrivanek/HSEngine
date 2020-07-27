@@ -4,6 +4,7 @@ using HSEngine.Rendering;
 using System;
 using System.Threading;
 using Veldrid;
+using HSEngine.Core.InputSystem;
 
 namespace HSEngine.Core
 {
@@ -28,7 +29,9 @@ namespace HSEngine.Core
             {
                 var input = window.PumpEvents();
 
-                Update(input);
+                Input.UpdateFrameInput(input);
+
+                Update();
 
                 Draw();
 
@@ -36,7 +39,7 @@ namespace HSEngine.Core
             }
         }
 
-        private void Update(InputSnapshot input)
+        private void Update()
         {
             currentScene.Update();
         }

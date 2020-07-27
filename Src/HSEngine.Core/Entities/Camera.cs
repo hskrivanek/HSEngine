@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using HSEngine.Core.Components;
+using System.Linq;
 using System.Numerics;
 
 namespace HSEngine.Core.Entities
@@ -11,27 +12,12 @@ namespace HSEngine.Core.Entities
 
         public Camera(Vector3 position, float pitch, float yaw, float roll)
         {
-            Position = position;
-            Pitch = pitch;
-            Yaw = yaw;
-            Roll = roll;
+            this.Transform = new Transform(position, new Vector3(pitch, yaw, roll), 1);
         }
 
-        public Vector3 Position { get; private set; }
-        public float Pitch { get; private set; }
-        public float Yaw { get; private set; }
-        public float Roll { get; private set; }
-
-        public void Update(Veldrid.InputSnapshot input)
-        {
-            if (input.KeyEvents.Any(e => e.Key == Veldrid.Key.A))
-            {
-                this.Position -= 0.04f * Vector3.UnitX;
-            }
-            else if (input.KeyEvents.Any(e => e.Key == Veldrid.Key.D))
-            {
-                this.Position += 0.04f * Vector3.UnitX;
-            }
-        }
+        public Vector3 Position => this.Transform.Position;
+        public float Pitch => this.Transform.Rotation.X;
+        public float Yaw => this.Transform.Rotation.Y;
+        public float Roll => this.Transform.Rotation.Z;
     }
 }
