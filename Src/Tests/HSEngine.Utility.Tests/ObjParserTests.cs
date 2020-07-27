@@ -1,21 +1,20 @@
-using NUnit.Framework;
 using System.IO;
 using System.Numerics;
+using Xunit;
 
 namespace HSEngine.Utility.Tests
 {
-    [TestFixture]
     public class ObjParserTests
     {
-        [Test]
+        [Fact]
         public void ModelNameIsLoaded()
         {
             var model = ObjParser.LoadModel(new StringReader(quadData));
 
-            Assert.AreEqual("Quad_Plane", model.Name);
+            Assert.Equal("Quad_Plane", model.Name);
         }
 
-        [Test]
+        [Fact]
         public void Quad_VerticesAreLoaded()
         {
             var expectedVertices = new Vector3[]
@@ -28,10 +27,10 @@ namespace HSEngine.Utility.Tests
 
             var model = ObjParser.LoadModel(new StringReader(quadData));
 
-            CollectionAssert.AreEqual(expectedVertices, model.Vertices);
+            Assert.Equal(expectedVertices, model.Vertices);
         }
 
-        [Test]
+        [Fact]
         public void Quad_TextureCoordsAreLoadedAndOrdered()
         {
             var expectedTextureCoords = new Vector2[]
@@ -44,10 +43,10 @@ namespace HSEngine.Utility.Tests
 
             var model = ObjParser.LoadModel(new StringReader(quadData));
 
-            CollectionAssert.AreEqual(expectedTextureCoords, model.TextureCoords);
+            Assert.Equal(expectedTextureCoords, model.TextureCoords);
         }
 
-        [Test]
+        [Fact]
         public void Quad_NormalsAreLoadedAndOrdered()
         {
             var expectedNormals = new Vector3[]
@@ -60,10 +59,10 @@ namespace HSEngine.Utility.Tests
 
             var model = ObjParser.LoadModel(new StringReader(quadData));
 
-            CollectionAssert.AreEqual(expectedNormals, model.Normals);
+            Assert.Equal(expectedNormals, model.Normals);
         }
 
-        [Test]
+        [Fact]
         public void Quad_IndexesAreLoaded()
         {
             var expectedIndexes = new int[]
@@ -74,10 +73,10 @@ namespace HSEngine.Utility.Tests
 
             var model = ObjParser.LoadModel(new StringReader(quadData));
 
-            CollectionAssert.AreEqual(expectedIndexes, model.Indexes);
+            Assert.Equal(expectedIndexes, model.Indexes);
         }
 
-        [Test]
+        [Fact]
         public void Cube_NormalsInATriangleAreTheSame()
         {
             var model = ObjParser.LoadModel(new StringReader(cubeData));
@@ -86,8 +85,8 @@ namespace HSEngine.Utility.Tests
             {
                 var normals = model.Normals;
                 var indexes = model.Indexes;
-                Assert.AreEqual(normals[indexes[i]], normals[indexes[i + 1]], "First and second normal in a triangle should be the same.");
-                Assert.AreEqual(normals[indexes[i]], normals[indexes[i + 2]], "First and second normal in a triangle should be the same.");
+                Assert.Equal(normals[indexes[i]], normals[indexes[i + 1]]); // First and second normal in a triangle should be the same.
+                Assert.Equal(normals[indexes[i]], normals[indexes[i + 2]]); // First and second normal in a triangle should be the same.
             }
         }
 
