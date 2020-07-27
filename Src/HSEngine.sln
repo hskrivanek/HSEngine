@@ -17,6 +17,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{C2385D0E
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HSEngine.Utility.Tests", "Tests\HSEngine.Utility.Tests\HSEngine.Utility.Tests.csproj", "{2A9B5D12-631B-4C44-8549-5D891516F437}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HSEngine.Core.Tests", "Tests\HSEngine.Core.Tests\HSEngine.Core.Tests.csproj", "{54BFA778-317A-4733-BDA7-CDC97A9FD80F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -43,6 +45,10 @@ Global
 		{2A9B5D12-631B-4C44-8549-5D891516F437}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2A9B5D12-631B-4C44-8549-5D891516F437}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2A9B5D12-631B-4C44-8549-5D891516F437}.Release|Any CPU.Build.0 = Release|Any CPU
+		{54BFA778-317A-4733-BDA7-CDC97A9FD80F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{54BFA778-317A-4733-BDA7-CDC97A9FD80F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{54BFA778-317A-4733-BDA7-CDC97A9FD80F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{54BFA778-317A-4733-BDA7-CDC97A9FD80F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -50,6 +56,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{0C73AFA7-3557-41ED-81ED-C042105A5954} = {45BA53C4-C488-4166-9884-727FEF5A9FC2}
 		{2A9B5D12-631B-4C44-8549-5D891516F437} = {C2385D0E-57CF-4E28-A373-58B6C33799EA}
+		{54BFA778-317A-4733-BDA7-CDC97A9FD80F} = {C2385D0E-57CF-4E28-A373-58B6C33799EA}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {004F6DEE-940D-49B6-98E9-2098FBC1FEDB}
