@@ -74,7 +74,7 @@ namespace HSEngine.Core.Tests
         {
             var snapshotMock = new Mock<InputSnapshot>();
 
-            snapshotMock.Setup(s => s.KeyEvents).Returns(new KeyEvent[] { });
+            snapshotMock.Setup(s => s.KeyEvents).Returns(Array.Empty<KeyEvent>());
             Input.UpdateFrameInput(snapshotMock.Object);
         }
     }
