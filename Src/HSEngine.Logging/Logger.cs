@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace HSEngine.Logging
+﻿namespace HSEngine.Logging
 {
     public class Logger
     {

@@ -5,7 +5,13 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+
   <ItemGroup>
+    <ProjectReference Include="..\..\HSEngine.Windows\HSEngine.Windows.csproj" />
     <ProjectReference Include="..\..\HSEngine\HSEngine.csproj" />
   </ItemGroup>
 

@@ -15,13 +15,15 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HSEngine.Utility.Tests", "T
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HSEngine.Core.Tests", "Tests\HSEngine.Core.Tests\HSEngine.Core.Tests.csproj", "{54BFA778-317A-4733-BDA7-CDC97A9FD80F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HSEngine", "HSEngine\HSEngine.csproj", "{096C9BA9-59B8-4DF2-92F7-406161BC1ECB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HSEngine", "HSEngine\HSEngine.csproj", "{096C9BA9-59B8-4DF2-92F7-406161BC1ECB}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Examples", "Examples", "{20068923-7906-44D8-8049-7208251D9E4F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sandbox", "Examples\Sandbox\Sandbox.csproj", "{62C4F980-4EE9-46A7-B965-37A0EDD287E3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sandbox", "Examples\Sandbox\Sandbox.csproj", "{62C4F980-4EE9-46A7-B965-37A0EDD287E3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HSEngine.Logging", "HSEngine.Logging\HSEngine.Logging.csproj", "{41B25A9C-0F36-4F58-B948-43490A866B38}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HSEngine.Logging", "HSEngine.Logging\HSEngine.Logging.csproj", "{41B25A9C-0F36-4F58-B948-43490A866B38}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HSEngine.Windows", "HSEngine.Windows\HSEngine.Windows.csproj", "{D54005FE-05B5-4801-B8C8-FC33A1CEB666}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -61,6 +63,10 @@ Global
 		{41B25A9C-0F36-4F58-B948-43490A866B38}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{41B25A9C-0F36-4F58-B948-43490A866B38}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{41B25A9C-0F36-4F58-B948-43490A866B38}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D54005FE-05B5-4801-B8C8-FC33A1CEB666}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D54005FE-05B5-4801-B8C8-FC33A1CEB666}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D54005FE-05B5-4801-B8C8-FC33A1CEB666}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D54005FE-05B5-4801-B8C8-FC33A1CEB666}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
