@@ -8,8 +8,4 @@
     <PackageReference Include="Veldrid.Sdl2" Version="4.8.0" />
   </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\HSEngine.Rendering\HSEngine.Rendering.csproj" />
-  </ItemGroup>
-
 </Project>

@@ -11,6 +11,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\HSEngine.ImGui\HSEngine.ImGui.csproj" />
     <ProjectReference Include="..\..\HSEngine.Windows\HSEngine.Windows.csproj" />
     <ProjectReference Include="..\..\HSEngine\HSEngine.csproj" />
   </ItemGroup>

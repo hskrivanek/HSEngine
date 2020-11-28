@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29519.181
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HSEngine.Rendering", "HSEngine.Rendering\HSEngine.Rendering.csproj", "{1FE87CE5-C5CB-417D-8818-3D9F1C34825C}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HSEngine.Core", "HSEngine.Core\HSEngine.Core.csproj", "{4A02997B-0E41-4829-B76A-0480C971208F}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HSEngine.Utility", "HSEngine.Utility\HSEngine.Utility.csproj", "{1B73D50C-46FC-4EF4-A6AD-5C56BDCA3C87}"
@@ -23,7 +21,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sandbox", "Examples\Sandbox
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HSEngine.Logging", "HSEngine.Logging\HSEngine.Logging.csproj", "{41B25A9C-0F36-4F58-B948-43490A866B38}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HSEngine.Windows", "HSEngine.Windows\HSEngine.Windows.csproj", "{D54005FE-05B5-4801-B8C8-FC33A1CEB666}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HSEngine.Windows", "HSEngine.Windows\HSEngine.Windows.csproj", "{D54005FE-05B5-4801-B8C8-FC33A1CEB666}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HSEngine.ImGui", "HSEngine.ImGui\HSEngine.ImGui.csproj", "{D1445C23-06EF-434E-8F4F-C0FA8CA0F6AC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HSEngine.VeldridRendering", "HSEngine.VeldridRendering\HSEngine.VeldridRendering.csproj", "{F66FCB70-C96F-46C9-8EB8-A4E7A481ABB0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -31,10 +33,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{1FE87CE5-C5CB-417D-8818-3D9F1C34825C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{1FE87CE5-C5CB-417D-8818-3D9F1C34825C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{1FE87CE5-C5CB-417D-8818-3D9F1C34825C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{1FE87CE5-C5CB-417D-8818-3D9F1C34825C}.Release|Any CPU.Build.0 = Release|Any CPU
 		{4A02997B-0E41-4829-B76A-0480C971208F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{4A02997B-0E41-4829-B76A-0480C971208F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4A02997B-0E41-4829-B76A-0480C971208F}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -67,6 +65,14 @@ Global
 		{D54005FE-05B5-4801-B8C8-FC33A1CEB666}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D54005FE-05B5-4801-B8C8-FC33A1CEB666}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D54005FE-05B5-4801-B8C8-FC33A1CEB666}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D1445C23-06EF-434E-8F4F-C0FA8CA0F6AC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D1445C23-06EF-434E-8F4F-C0FA8CA0F6AC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D1445C23-06EF-434E-8F4F-C0FA8CA0F6AC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D1445C23-06EF-434E-8F4F-C0FA8CA0F6AC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F66FCB70-C96F-46C9-8EB8-A4E7A481ABB0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F66FCB70-C96F-46C9-8EB8-A4E7A481ABB0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F66FCB70-C96F-46C9-8EB8-A4E7A481ABB0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F66FCB70-C96F-46C9-8EB8-A4E7A481ABB0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

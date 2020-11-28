@@ -9,11 +9,12 @@ namespace HSEngine
     {
         public event EventHandler<EngineEventArgs> EventEmitted;
 
-        public int Width { get; protected set; }
-        public int Height { get; protected set; }
-        public bool IsVSyncEnabled { get; protected set; }
+        public abstract bool IsVSyncEnabled { get; }
+        public abstract int Width { get; }
+        public abstract int Height { get; }
 
-        public abstract void OnUpdate();
+        public abstract void OnUpdateStart();
+        public abstract void OnUpdateEnd();
         public abstract void EnableVSync();
         public abstract void DisableVSync();
 

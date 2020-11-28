@@ -5,15 +5,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="ImGui.NET" Version="1.78.0" />
+    <!--TODO extract veldrid rendering to another assembly-->
     <PackageReference Include="Veldrid" Version="4.8.0" />
-    <PackageReference Include="Veldrid.ImageSharp" Version="4.8.0" />
     <PackageReference Include="Veldrid.SPIRV" Version="1.0.13" />
-    <PackageReference Include="Veldrid.StartupUtilities" Version="4.8.0" />
-    <PackageReference Include="Veldrid.Utilities" Version="4.8.0" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\HSEngine.Utility\HSEngine.Utility.csproj" />
+    <ProjectReference Include="..\HSEngine\HSEngine.csproj" />
   </ItemGroup>
 
 </Project>

@@ -1,6 +1,5 @@
 ﻿using HSEngine.Core.Components;
 using HSEngine.Core.Utility;
-using HSEngine.Rendering;
 using System;
 
 namespace HSEngine.Core.Entities

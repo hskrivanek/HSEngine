@@ -7,6 +7,9 @@ namespace HSEngine
 {
     public abstract class Application
     {
+        private const string multipleApplicationsErrorMessage = "Only one instance of HSEngine application can be running in single program.";
+        private static Application currentApplication;
+
         private readonly Window window;
         private readonly LayerStack layerStack = new LayerStack();
 
@@ -15,23 +18,47 @@ namespace HSEngine
         protected Application(Func<Window> windowProvider)
         {
             Log.Init();
-            Log.CoreLogger.Info("HSEngine application creating");
+            Log.CoreLogger.Info("Creating HSEngine application.");
+
+            if (currentApplication != null)
+            {
+                Log.CoreLogger.Fatal(multipleApplicationsErrorMessage);
+                throw new ApplicationException(multipleApplicationsErrorMessage);
+            }
+            currentApplication = this;
 
             this.window = windowProvider();
             isRunning = true;
             this.window.EventEmitted += Window_EventEmitted;
         }
 
+        public Window Window => this.window;
+
         public virtual void Run()
         {
             Log.CoreLogger.Info("HSEngine application starting");
             while (isRunning)
             {
+                this.window.OnUpdateStart();
                 UpdateLayers();
-                this.window.OnUpdate();
+                this.window.OnUpdateEnd();
             }
             Log.CoreLogger.Info("Application loop ended");
         }
+
+        public void PushLayer(Layer layer)
+        {
+            this.layerStack.PushLayer(layer);
+            layer.OnAttach();
+        }
+
+        public void PushOverlay(Layer layer)
+        {
+            this.layerStack.PushOverlay(layer);
+            layer.OnAttach();
+        }
+
+        public static Application GetCurrentApplication() => currentApplication;
 
         private void UpdateLayers()
         {
