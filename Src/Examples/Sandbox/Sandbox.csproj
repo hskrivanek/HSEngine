@@ -12,6 +12,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\HSEngine.ImGui\HSEngine.ImGui.csproj" />
+    <ProjectReference Include="..\..\HSEngine.VeldridRendering\HSEngine.VeldridRendering.csproj" />
     <ProjectReference Include="..\..\HSEngine.Windows\HSEngine.Windows.csproj" />
     <ProjectReference Include="..\..\HSEngine\HSEngine.csproj" />
   </ItemGroup>

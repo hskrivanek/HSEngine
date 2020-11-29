@@ -2,6 +2,7 @@
 using HSEngine.Events;
 using HSEngine.ImGuiUtils;
 using HSEngine.Logging;
+using HSEngine.VeldridRendering;
 using HSEngine.Windows;
 using System;
 
@@ -17,7 +18,7 @@ namespace Sandbox
             static Window windowProvider() => new WpfWindowWithVeldrid(new WindowProperties() { Width = 1240, Height = 728, Title = "Sandbox" });
             var app = new SandboxApp(windowProvider);
             var (gd, cl, _) = ((WpfWindowWithVeldrid)app.Window).TempGetGraphicsStuff();
-            app.PushLayer(new ImGuiLayer(gd, cl));
+            app.PushLayer(new ImGuiLayer(new VeldridImGuiRenderer(gd, cl)));
 
             app.Run();
 
