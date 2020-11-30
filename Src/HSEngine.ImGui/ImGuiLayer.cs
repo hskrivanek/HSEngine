@@ -10,7 +10,7 @@ namespace HSEngine.ImGuiUtils
     public class ImGuiLayer : Layer
     {
         private IntPtr context;
-        private IImGuiRenderer renderer;
+        private readonly IImGuiRenderer renderer;
 
         public ImGuiLayer(IImGuiRenderer renderer, string debugName = "ImGuiLayer") : base(debugName)
         {
@@ -28,11 +28,9 @@ namespace HSEngine.ImGuiUtils
             io.ConfigFlags |= ImGuiConfigFlags.ViewportsEnable;
 
             SetKeyMappings();
-
-            var fonts = ImGui.GetIO().Fonts;
+            _ = ImGui.GetIO().Fonts;
             io.Fonts.AddFontDefault();
-
-            io.Fonts.GetTexDataAsRGBA32(out IntPtr pixels, out int width, out int height, out int bytesPerPixel);
+            io.Fonts.GetTexDataAsRGBA32(out IntPtr _, out _, out _, out _);
             io.Fonts.SetTexID((IntPtr)1);
             io.Fonts.ClearTexData();
 
@@ -46,6 +44,7 @@ namespace HSEngine.ImGuiUtils
             this.renderer.InitializeRenderer(io, (IntPtr)1);
 
             ImGui.NewFrame();
+            OnUpdate();
         }
 
         public override void OnDetach()
@@ -96,8 +95,9 @@ namespace HSEngine.ImGuiUtils
 
             ImGui.Render();
 
-            var drawData = ImGui.GetDrawData();
-            this.renderer.RenderImDrawData(drawData);
+            ImDrawDataPtr drawData = ImGui.GetDrawData();
+            ImGuiIOPtr io = ImGui.GetIO();
+            this.renderer.RenderImDrawData(io ,drawData);
         }
         
         private static void SetKeyMappings()

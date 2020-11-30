@@ -1,6 +1,7 @@
 ﻿using HSEngine.Events;
 using HSEngine.Logging;
 using System;
+using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Windows;
 using Veldrid;
@@ -23,6 +24,7 @@ namespace HSEngine.Windows
         public override int Width => (int)(win32Host.ActualWidth < 0 ? 0 : Math.Ceiling(win32Host.ActualWidth * GetDpiScale()));
 
         public override int Height => (int)(win32Host.ActualHeight < 0 ? 0 : Math.Ceiling(win32Host.ActualHeight * GetDpiScale()));
+
 
         public override bool IsVSyncEnabled => this.gd.SyncToVerticalBlank;
 
@@ -60,11 +62,13 @@ namespace HSEngine.Windows
         private void Init(WindowProperties windowProperties)
         {
             CreateMainWindow(windowProperties);
-            CreateWin32HostAndSetSizes(windowProperties);
+            CreateWin32HostAndSetSizes();
             CreateGraphicsResources();
 
             win32Host.Resized += WindowHost_Resized;
 
+            mainWindow.SizeChanged += MainWindow_SizeChanged;
+            mainWindow.DpiChanged += MainWindow_DpiChanged;
             mainWindow.Closed += Window_Closed;
 
             mainWindow.KeyDown += Window_KeyDown;
@@ -80,22 +84,24 @@ namespace HSEngine.Windows
         {
             Log.CoreLogger.Info($"Creating window {windowProperties.Title} ({windowProperties.Width}, {windowProperties.Height}).");
 
+            var dpi = (int)(typeof(SystemParameters).GetProperty("Dpi", BindingFlags.NonPublic | BindingFlags.Static).GetValue(null, null));
+            var dpiScale = dpi / 96.0;
+
             this.mainWindow = new System.Windows.Window()
             {
                 Title = windowProperties.Title,
-                SizeToContent = SizeToContent.WidthAndHeight
+                Width = windowProperties.Width / dpiScale,
+                Height = (windowProperties.Height + SystemParameters.WindowCaptionHeight) / dpiScale 
             };
         }
 
-        private void CreateWin32HostAndSetSizes(WindowProperties windowProperties)
+        private void CreateWin32HostAndSetSizes()
         {
             Log.CoreLogger.Info($"Creating Win32 window host for rendering and setting actual window size.");
 
             this.win32Host = new Win32HwndHost();
             this.mainWindow.Content = this.win32Host;
             this.mainWindow.Show();
-            this.win32Host.Width = windowProperties.Width / GetDpiScale();
-            this.win32Host.Height = windowProperties.Height / GetDpiScale();
         }
 
         private void CreateGraphicsResources()
@@ -108,7 +114,7 @@ namespace HSEngine.Windows
             gd = GraphicsDevice.CreateD3D11(
                 new GraphicsDeviceOptions()
                 {
-                    SwapchainDepthFormat = PixelFormat.R16_UNorm,
+                    SwapchainDepthFormat = Veldrid.PixelFormat.R16_UNorm,
                     HasMainSwapchain = true
                 },
                 swapChainDescription);
@@ -146,6 +152,16 @@ namespace HSEngine.Windows
             PresentationSource source = PresentationSource.FromVisual(this.win32Host);
 
             return source.CompositionTarget.TransformToDevice.M11;
+        }
+
+        private void MainWindow_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+
+        }
+
+        private void MainWindow_DpiChanged(object sender, DpiChangedEventArgs e)
+        {
+            throw new NotImplementedException();
         }
 
         private void WindowHost_Resized(object sender, EventArgs e)

@@ -122,7 +122,7 @@ void main()
             fontTextureResourceSet = factory.CreateResourceSet(new ResourceSetDescription(textureLayout, fontTextureView));
         }
 
-        public void RenderImDrawData(ImDrawDataPtr drawData)
+        public void RenderImDrawData(ImGuiIOPtr io, ImDrawDataPtr drawData)
         {
             uint vertexOffsetInVertices = 0;
             uint indexOffsetInElements = 0;
@@ -166,7 +166,6 @@ void main()
                 indexOffsetInElements += (uint)cmdList.IdxBuffer.Size;
             }
 
-            ImGuiIOPtr io = ImGui.GetIO();
             Matrix4x4 mvp = Matrix4x4.CreateOrthographicOffCenter(
                 0f,
                 io.DisplaySize.X,
@@ -230,9 +229,7 @@ void main()
         private void RecreateFontDeviceTexture(ImGuiIOPtr io, IntPtr texId)
         {
             // Build
-            IntPtr pixels;
-            int width, height, bytesPerPixel;
-            io.Fonts.GetTexDataAsRGBA32(out pixels, out width, out height, out bytesPerPixel);
+            io.Fonts.GetTexDataAsRGBA32(out IntPtr pixels, out int width, out int height, out int bytesPerPixel);
             // Store our identifier
             io.Fonts.SetTexID(texId);
 

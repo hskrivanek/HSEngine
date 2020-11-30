@@ -36,14 +36,21 @@ namespace HSEngine
 
         public virtual void Run()
         {
-            Log.CoreLogger.Info("HSEngine application starting");
+            Log.CoreLogger.Info("HSEngine application starting.");
+            RunMainLoop();
+            Log.CoreLogger.Info("Application loop ended");
+        }
+
+        private void RunMainLoop()
+        {
+            Log.CoreLogger.Info("Running main engine loop.");
+
             while (isRunning)
             {
                 this.window.OnUpdateStart();
                 UpdateLayers();
                 this.window.OnUpdateEnd();
             }
-            Log.CoreLogger.Info("Application loop ended");
         }
 
         public void PushLayer(Layer layer)
