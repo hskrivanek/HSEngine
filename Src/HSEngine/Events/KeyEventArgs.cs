@@ -52,4 +52,20 @@
             return $"KeyUpEvent: {this.KeyCode}";
         }
     }
+
+    public class KeyTypedEventArgs : KeyEventArgs
+    {
+        public KeyTypedEventArgs(KeyCode keyCode, char typedCharacter) : base(keyCode)
+        {
+            this.TypedCharacter = typedCharacter;
+            this.EventType = EventType.KeyTyped;
+        }
+
+        public char TypedCharacter { get; private set; }
+
+        public override string ToString()
+        {
+            return $"KeyTypedEvent: {TypedCharacter}";
+        }
+    }
 }

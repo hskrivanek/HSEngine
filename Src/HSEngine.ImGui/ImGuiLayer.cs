@@ -3,8 +3,6 @@ using ImGuiNET;
 using System;
 using System.Numerics;
 
-// TODO: Remove Veldrid from here => abstract renderer
-
 namespace HSEngine.ImGuiUtils
 {
     public class ImGuiLayer : Layer
@@ -72,11 +70,22 @@ namespace HSEngine.ImGuiUtils
                     break;
                 case KeyDownEventArgs e:
                     io.KeysDown[(int)e.KeyCode] = true;
-                    e.Handled = true;
+
+                    io.KeyCtrl = io.KeysDown[(int)KeyCode.LeftCtrl] || io.KeysDown[(int)KeyCode.RightCtrl];
+                    io.KeyShift = io.KeysDown[(int)KeyCode.LeftShift] || io.KeysDown[(int)KeyCode.RightShift];
+                    io.KeyAlt = io.KeysDown[(int)KeyCode.LeftAlt] || io.KeysDown[(int)KeyCode.RightAlt];
+                    io.KeySuper = io.KeysDown[(int)KeyCode.LWin] || io.KeysDown[(int)KeyCode.RWin];
                     break;
                 case KeyUpEventArgs e:
                     io.KeysDown[(int)e.KeyCode] = false;
-                    e.Handled = true;
+
+                    io.KeyCtrl = io.KeysDown[(int)KeyCode.LeftCtrl] || io.KeysDown[(int)KeyCode.RightCtrl];
+                    io.KeyShift = io.KeysDown[(int)KeyCode.LeftShift] || io.KeysDown[(int)KeyCode.RightShift];
+                    io.KeyAlt = io.KeysDown[(int)KeyCode.LeftAlt] || io.KeysDown[(int)KeyCode.RightAlt];
+                    io.KeySuper = io.KeysDown[(int)KeyCode.LWin] || io.KeysDown[(int)KeyCode.RWin];
+                    break;
+                case KeyTypedEventArgs e:
+                    io.AddInputCharacter(e.TypedCharacter);
                     break;
                 case WindowResizeEventArgs e:
                     io.DisplaySize = new Vector2(e.Width, e.Height);

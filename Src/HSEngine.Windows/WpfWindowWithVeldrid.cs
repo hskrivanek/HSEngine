@@ -66,9 +66,7 @@ namespace HSEngine.Windows
             CreateGraphicsResources();
 
             win32Host.Resized += WindowHost_Resized;
-
-            mainWindow.SizeChanged += MainWindow_SizeChanged;
-            mainWindow.DpiChanged += MainWindow_DpiChanged;
+            
             mainWindow.Closed += Window_Closed;
 
             mainWindow.KeyDown += Window_KeyDown;
@@ -78,6 +76,11 @@ namespace HSEngine.Windows
             mainWindow.MouseWheel += Window_MouseWheel;
             mainWindow.MouseDown += Window_MouseDown;
             mainWindow.MouseUp += Window_MouseUp;
+        }
+
+        private void Win32Host_TextInput(object sender, System.Windows.Input.TextCompositionEventArgs e)
+        {
+            throw new NotImplementedException();
         }
 
         private void CreateMainWindow(WindowProperties windowProperties)
@@ -154,16 +157,6 @@ namespace HSEngine.Windows
             return source.CompositionTarget.TransformToDevice.M11;
         }
 
-        private void MainWindow_SizeChanged(object sender, SizeChangedEventArgs e)
-        {
-
-        }
-
-        private void MainWindow_DpiChanged(object sender, DpiChangedEventArgs e)
-        {
-            throw new NotImplementedException();
-        }
-
         private void WindowHost_Resized(object sender, EventArgs e)
         {
             (uint width, uint height) = GetRenderAreaSizeInPixels();
@@ -181,12 +174,16 @@ namespace HSEngine.Windows
 
         private void Window_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
         {
-            EmitEngineEvent(new KeyDownEventArgs(InputConverter.ConvertKeyToEngine(e.Key)));
+            var key = e.Key == System.Windows.Input.Key.System ? e.SystemKey : e.Key;
+            var engineKey = InputConverter.ConvertKeyToEngine(key);
+            EmitEngineEvent(new KeyDownEventArgs(engineKey));
+            EmitEngineEvent(new KeyTypedEventArgs(engineKey, InputConverter.GetCharFromKey(key)));
         }
 
         private void Window_KeyUp(object sender, System.Windows.Input.KeyEventArgs e)
         {
-            EmitEngineEvent(new KeyUpEventArgs(InputConverter.ConvertKeyToEngine(e.Key)));
+            var key = e.Key == System.Windows.Input.Key.System ? e.SystemKey : e.Key;
+            EmitEngineEvent(new KeyUpEventArgs(InputConverter.ConvertKeyToEngine(key)));
         }
 
         private void Window_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)

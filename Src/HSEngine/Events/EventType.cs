@@ -17,6 +17,7 @@
         KeyPressed,
         KeyUp,
         KeyDown,
+        KeyTyped,
 
         MouseButtonDown,
         MouseButtonUp,
