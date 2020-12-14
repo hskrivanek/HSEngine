@@ -47,6 +47,7 @@ namespace HSEngine
 
             while (isRunning)
             {
+                Input.UpdateFrame();
                 this.window.OnUpdateStart();
                 UpdateLayers();
                 this.window.OnUpdateEnd();
@@ -79,7 +80,7 @@ namespace HSEngine
         {
             Log.CoreLogger.Trace(e.ToString());
 
-            if (e.EventCategory == EventCategory.Input)
+            if ((e.EventCategory & EventCategory.Input) != 0)
             {
                 Input.UpdateState(e);
             }

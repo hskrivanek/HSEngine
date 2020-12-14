@@ -27,11 +27,14 @@ namespace HSEngine
 
         public static Vector2 MousePosition => mousePosition;
 
-        internal static void UpdateState(EngineEventArgs engineEvent)
+        internal static void UpdateFrame()
         {
             previouslyPressedKeys = new HashSet<KeyCode>(pressedKeys);
             previouslyPressedMouseButtons = new HashSet<MouseCode>(pressedMouseButtons);
+        }
 
+        internal static void UpdateState(EngineEventArgs engineEvent)
+        {
             switch (engineEvent)
             {
                 case KeyDownEventArgs e:

@@ -19,17 +19,31 @@ namespace Sandbox
             var app = new SandboxApp(windowProvider);
             var window = (WpfWindowWithVeldrid)app.Window;
             var (gd, cl, _) = window.TempGetGraphicsStuff();
-            app.PushLayer(new ImGuiLayer(new VeldridImGuiRenderer(gd, cl)));
+            app.PushOverlay(new ImGuiLayer(new VeldridImGuiRenderer(gd, cl)));
+            app.PushLayer(new TestLayer());
 
             app.Run();
 
-            var e = new MouseButtonDownEventArgs(MouseCode.Button0);
-            if ((e.EventCategory & EventCategory.Keyboard) != 0)
-            {
-                Log.ClientLogger.Trace(e.ToString());
-            }
-
             Log.ClientLogger.Info("Exiting");
+        }
+
+        class TestLayer : Layer
+        {
+            public override void OnUpdate()
+            {
+                if (Input.KeyDown(KeyCode.Space))
+                {
+                    Log.ClientLogger.Debug("Space key down");
+                }
+                if (Input.Key(KeyCode.Space))
+                {
+                    Log.ClientLogger.Debug("Space key");
+                }
+                if (Input.KeyUp(KeyCode.Space))
+                {
+                    Log.ClientLogger.Debug("Space key up");
+                }
+            }
         }
     }
 }
