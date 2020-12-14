@@ -78,6 +78,12 @@ namespace HSEngine
         private void Window_EventEmitted(object _, EngineEventArgs e)
         {
             Log.CoreLogger.Trace(e.ToString());
+
+            if (e.EventCategory == EventCategory.Input)
+            {
+                Input.UpdateState(e);
+            }
+
             switch(e)
             {
                 case WindowCloseEventArgs _:
