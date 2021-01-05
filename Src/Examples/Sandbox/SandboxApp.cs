@@ -4,6 +4,7 @@ using HSEngine.ImGuiUtils;
 using HSEngine.Logging;
 using HSEngine.VeldridRendering;
 using HSEngine.Windows;
+using ImGuiNET;
 using System;
 
 namespace Sandbox
@@ -31,6 +32,16 @@ namespace Sandbox
         {
             public override void OnUpdate()
             {
+                static void drawTest()
+                {
+                    ImGui.Begin("TEST WINDOW");
+                    ImGui.Text("test");
+                    ImGui.End();
+                }
+
+                ImGuiFrameWriter.EnqueueDemoWindowDrawing();
+                ImGuiFrameWriter.EnqueueCustomDrawingAction(drawTest);
+
                 if (Input.KeyDown(KeyCode.Space))
                 {
                     Log.ClientLogger.Debug("Space key down");

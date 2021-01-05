@@ -99,8 +99,9 @@ namespace HSEngine.ImGuiUtils
         public override void OnUpdate()
         {
             ImGui.NewFrame();
-            var show = true;
-            ImGui.ShowDemoWindow(ref show);
+
+            // TODO: Customize the draw function, perhaps via state available to other layers
+            ImGuiFrameWriter.DrawQueueToFrame();
 
             ImGui.Render();
 
