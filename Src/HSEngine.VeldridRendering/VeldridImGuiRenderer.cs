@@ -34,7 +34,7 @@ namespace HSEngine.VeldridRendering
             projMatrixBuffer = factory.CreateBuffer(new BufferDescription(64, BufferUsage.UniformBuffer | BufferUsage.Dynamic));
             RecreateFontDeviceTexture(io, fontTexId);
 
-            var vertexString = @"
+            var vertexSrc = @"
 #version 450
 
 #extension GL_ARB_separate_shader_objects : enable
@@ -65,7 +65,7 @@ void main()
     gl_Position.y = -gl_Position.y;
 }
 ";
-            var fragString = @"
+            var fragmentSrc = @"
 #version 450
 
 #extension GL_ARB_separate_shader_objects : enable
@@ -83,8 +83,8 @@ void main()
     outputColor = color * texture(sampler2D(FontTexture, FontSampler), texCoord);
 }
 ";
-            byte[] vertexShaderBytes = Encoding.UTF8.GetBytes(vertexString);
-            byte[] fragmentShaderBytes = Encoding.UTF8.GetBytes(fragString);
+            byte[] vertexShaderBytes = Encoding.UTF8.GetBytes(vertexSrc);
+            byte[] fragmentShaderBytes = Encoding.UTF8.GetBytes(fragmentSrc);
             var shaders = factory.CreateFromSpirv(
                 new ShaderDescription(ShaderStages.Vertex, vertexShaderBytes, "main"),
                 new ShaderDescription(ShaderStages.Fragment, fragmentShaderBytes, "main"));

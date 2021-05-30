@@ -4,11 +4,11 @@ using System.Collections.Generic;
 
 namespace HSEngine.ImGuiUtils
 {
-    public static class ImGuiFrameWriter
+    public class ImGuiFrameBuffer
     {
-        private readonly static Queue<Action> actions = new Queue<Action>();
+        private readonly Queue<Action> actions = new Queue<Action>();
 
-        public static void DrawQueueToFrame()
+        public void DrawFromQueueToFrame()
         {
             while (actions.Count > 0)
             {
@@ -17,7 +17,7 @@ namespace HSEngine.ImGuiUtils
             }
         }
 
-        public static void EnqueueDemoWindowDrawing()
+        public void EnqueueDemoWindowDrawing()
         { 
             static void action()
             { 
@@ -28,7 +28,7 @@ namespace HSEngine.ImGuiUtils
             actions.Enqueue(action);
         }
 
-        public static void EnqueueCustomDrawingAction(Action action)
+        public void EnqueueCustomDrawingAction(Action action)
         {
             actions.Enqueue(action);
         }

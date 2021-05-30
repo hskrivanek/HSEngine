@@ -9,10 +9,12 @@ namespace HSEngine.ImGuiUtils
     {
         private IntPtr context;
         private readonly IImGuiRenderer renderer;
+        private readonly ImGuiFrameBuffer imGuiFrameBuffer;
 
-        public ImGuiLayer(IImGuiRenderer renderer, string debugName = "ImGuiLayer") : base(debugName)
+        public ImGuiLayer(IImGuiRenderer renderer, ImGuiFrameBuffer imGuiFrameBuffer, string debugName = "ImGuiLayer") : base(debugName)
         {
             this.renderer = renderer;
+            this.imGuiFrameBuffer = imGuiFrameBuffer;
         }
 
         public override void OnAttach()
@@ -24,6 +26,8 @@ namespace HSEngine.ImGuiUtils
             io.ConfigFlags |= ImGuiConfigFlags.NavEnableKeyboard;
             io.ConfigFlags |= ImGuiConfigFlags.DockingEnable;
             io.ConfigFlags |= ImGuiConfigFlags.ViewportsEnable;
+            io.ConfigFlags |= ImGuiConfigFlags.DpiEnableScaleFonts;
+            io.ConfigFlags |= ImGuiConfigFlags.DpiEnableScaleViewports;
 
             SetKeyMappings();
             _ = ImGui.GetIO().Fonts;
@@ -101,7 +105,7 @@ namespace HSEngine.ImGuiUtils
             ImGui.NewFrame();
 
             // TODO: Customize the draw function, perhaps via state available to other layers
-            ImGuiFrameWriter.DrawQueueToFrame();
+            this.imGuiFrameBuffer.DrawFromQueueToFrame();
 
             ImGui.Render();
 

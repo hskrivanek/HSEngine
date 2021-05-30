@@ -20,8 +20,9 @@ namespace Sandbox
             var app = new SandboxApp(windowProvider);
             var window = (WpfWindowWithVeldrid)app.Window;
             var (gd, cl, _) = window.TempGetGraphicsStuff();
-            app.PushOverlay(new ImGuiLayer(new VeldridImGuiRenderer(gd, cl)));
-            app.PushLayer(new TestLayer());
+            var imGuiFrameBuffer = new ImGuiFrameBuffer();
+            app.PushOverlay(new ImGuiLayer(new VeldridImGuiRenderer(gd, cl), imGuiFrameBuffer));
+            app.PushLayer(new TestLayer(imGuiFrameBuffer));
 
             app.Run();
 
@@ -30,6 +31,13 @@ namespace Sandbox
 
         class TestLayer : Layer
         {
+            private readonly ImGuiFrameBuffer imGuiFrameBuffer;
+
+            public TestLayer(ImGuiFrameBuffer imGuiFrameBuffer)
+            {
+                this.imGuiFrameBuffer = imGuiFrameBuffer;
+            }
+
             public override void OnUpdate()
             {
                 static void drawTest()
@@ -39,8 +47,8 @@ namespace Sandbox
                     ImGui.End();
                 }
 
-                ImGuiFrameWriter.EnqueueDemoWindowDrawing();
-                ImGuiFrameWriter.EnqueueCustomDrawingAction(drawTest);
+                this.imGuiFrameBuffer.EnqueueDemoWindowDrawing();
+                this.imGuiFrameBuffer.EnqueueCustomDrawingAction(drawTest);
 
                 if (Input.KeyDown(KeyCode.Space))
                 {
