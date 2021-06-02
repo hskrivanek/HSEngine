@@ -1,8 +1,6 @@
 ﻿namespace HSEngine
 {
-#pragma warning disable CA1027 // Mark enums with FlagsAttribute
     public enum MouseCode
-#pragma warning restore CA1027 // Mark enums with FlagsAttribute
     {
         Button0 = 0,
         Button1 = 1,
@@ -13,6 +11,8 @@
         // Equivalent to System.Windows.Input.MouseButton
         Left = Button0,
         Middle = Button1,
-        Right = Button2
+        Right = Button2,
+
+        None = 100
     }
 }

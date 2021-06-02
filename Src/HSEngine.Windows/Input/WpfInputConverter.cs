@@ -2,9 +2,9 @@
 using System.Text;
 using System.Windows.Input;
 
-namespace HSEngine.Windows
+namespace HSEngine.Windows.Input
 {
-    internal static class InputConverter
+    internal static class WpfInputConverter
     {
         internal static KeyCode ConvertKeyToEngine(Key key)
         {
@@ -17,7 +17,7 @@ namespace HSEngine.Windows
             return (MouseCode)((int)button);
         }
 
-        public static char GetCharFromKey(Key key)
+        internal static char GetCharFromKey(Key key)
         {
             switch (key)
             {

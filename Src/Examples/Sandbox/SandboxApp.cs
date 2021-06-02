@@ -16,9 +16,9 @@ namespace Sandbox
         [STAThread]
         static void Main()
         {
-            static Window windowProvider() => new WpfWindowWithVeldrid(new WindowProperties() { Width = 1240, Height = 728, Title = "Sandbox" });
+            static Window windowProvider() => new WinFormsVeldridWindow(new WindowProperties() { Width = 1240, Height = 728, Title = "Sandbox" });
             var app = new SandboxApp(windowProvider);
-            var window = (WpfWindowWithVeldrid)app.Window;
+            var window = (WinFormsVeldridWindow)app.Window;
             var (gd, cl, _) = window.TempGetGraphicsStuff();
             var imGuiFrameBuffer = new ImGuiFrameBuffer();
             app.PushOverlay(new ImGuiLayer(new VeldridImGuiRenderer(gd, cl), imGuiFrameBuffer));

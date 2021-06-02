@@ -1,5 +1,6 @@
 ﻿using HSEngine.Events;
 using HSEngine.Logging;
+using HSEngine.Windows.Input;
 using System;
 using System.Reflection;
 using System.Runtime.InteropServices;
@@ -8,7 +9,7 @@ using Veldrid;
 
 namespace HSEngine.Windows
 {
-    public class WpfWindowWithVeldrid : Window
+    public class WpfVeldridWindow : Window
     {
         private System.Windows.Window mainWindow;
         private Win32HwndHost win32Host;
@@ -16,7 +17,7 @@ namespace HSEngine.Windows
         private GraphicsDevice gd;
         private CommandList cl;
 
-        public WpfWindowWithVeldrid(WindowProperties windowProperties)
+        public WpfVeldridWindow(WindowProperties windowProperties)
         {
             this.Init(windowProperties);
         }
@@ -175,25 +176,25 @@ namespace HSEngine.Windows
         private void Window_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
         {
             var key = e.Key == System.Windows.Input.Key.System ? e.SystemKey : e.Key;
-            var engineKey = InputConverter.ConvertKeyToEngine(key);
+            var engineKey = WpfInputConverter.ConvertKeyToEngine(key);
             EmitEngineEvent(new KeyDownEventArgs(engineKey));
-            EmitEngineEvent(new KeyTypedEventArgs(engineKey, InputConverter.GetCharFromKey(key)));
+            EmitEngineEvent(new KeyTypedEventArgs(WpfInputConverter.GetCharFromKey(key)));
         }
 
         private void Window_KeyUp(object sender, System.Windows.Input.KeyEventArgs e)
         {
             var key = e.Key == System.Windows.Input.Key.System ? e.SystemKey : e.Key;
-            EmitEngineEvent(new KeyUpEventArgs(InputConverter.ConvertKeyToEngine(key)));
+            EmitEngineEvent(new KeyUpEventArgs(WpfInputConverter.ConvertKeyToEngine(key)));
         }
 
         private void Window_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-            EmitEngineEvent(new MouseButtonDownEventArgs(InputConverter.ConvertMouseButtonToEngine(e.ChangedButton)));
+            EmitEngineEvent(new MouseButtonDownEventArgs(WpfInputConverter.ConvertMouseButtonToEngine(e.ChangedButton)));
         }
 
         private void Window_MouseUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-            EmitEngineEvent(new MouseButtonUpEventArgs(InputConverter.ConvertMouseButtonToEngine(e.ChangedButton)));
+            EmitEngineEvent(new MouseButtonUpEventArgs(WpfInputConverter.ConvertMouseButtonToEngine(e.ChangedButton)));
         }
 
         private void Window_MouseWheel(object sender, System.Windows.Input.MouseWheelEventArgs e)

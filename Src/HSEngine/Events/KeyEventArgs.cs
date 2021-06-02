@@ -2,23 +2,23 @@
 {
     public abstract class KeyEventArgs : EngineEventArgs
     {
-        protected KeyEventArgs(KeyCode keyCode)
+        protected KeyEventArgs()
         {
-            this.KeyCode = keyCode;
+            
             this.EventCategory = EventCategory.Keyboard | EventCategory.Input;
         }
-
-        public KeyCode KeyCode { get; private set; }
     }
 
     public class KeyPressedEventArgs : KeyEventArgs
     {
-        public KeyPressedEventArgs(KeyCode keyCode, int repeatCount) : base(keyCode)
+        public KeyPressedEventArgs(KeyCode keyCode, int repeatCount)
         {
+            this.KeyCode = keyCode;
             this.RepeatCount = repeatCount;
             this.EventType = EventType.KeyPressed;
         }
 
+        public KeyCode KeyCode { get; private set; }
         public int RepeatCount { get; private set; }
 
         public override string ToString()
@@ -29,10 +29,13 @@
 
     public class KeyDownEventArgs : KeyEventArgs
     {
-        public KeyDownEventArgs(KeyCode keyCode) : base(keyCode)
+        public KeyDownEventArgs(KeyCode keyCode)
         {
+            this.KeyCode = keyCode;
             this.EventType = EventType.KeyDown;
         }
+
+        public KeyCode KeyCode { get; private set; }
 
         public override string ToString()
         {
@@ -42,10 +45,13 @@
 
     public class KeyUpEventArgs : KeyEventArgs
     {
-        public KeyUpEventArgs(KeyCode keyCode) : base(keyCode)
+        public KeyUpEventArgs(KeyCode keyCode)
         {
+            this.KeyCode = keyCode;
             this.EventType = EventType.KeyUp;
         }
+
+        public KeyCode KeyCode { get; private set; }
 
         public override string ToString()
         {
@@ -55,7 +61,7 @@
 
     public class KeyTypedEventArgs : KeyEventArgs
     {
-        public KeyTypedEventArgs(KeyCode keyCode, char typedCharacter) : base(keyCode)
+        public KeyTypedEventArgs(char typedCharacter)
         {
             this.TypedCharacter = typedCharacter;
             this.EventType = EventType.KeyTyped;
